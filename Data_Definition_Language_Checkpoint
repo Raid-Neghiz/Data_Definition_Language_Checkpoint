@@ -1,0 +1,50 @@
+create table Customers (
+        CustomerID int primary key ,
+        FirstName varchar(20) NOT NULL,
+        LastName varchar(20) NOT NULL ,
+        Email varchar (20)NOT NULL  ,
+        Phone varchar(20) NOT NULL ,
+        Address varchar (20) NOT NULL ,
+        City varchar(20) NOT NULL ,
+        State varchar(20) NOT NULL ,
+        Zipcode int NOT NULL 
+
+);
+
+create table Categories (
+        CategoryID int PRIMARY KEY ,
+        CategoryName varchar(20) NOT NULL ,
+        Description varchar (20) NOT NULL 
+);
+
+create table Products (
+          ProductID int PRIMARY KEY ,
+          ProductName varchar(20) NOT NULL ,
+          Description varchar(20),
+          Price int NOT NULL ,
+          StockQuantity int NOT NULL  ,
+          CategoryID int NOT NULL ,
+          CONSTRAINT FK_Categories FOREIGN KEY (CategoryID) REFERENCES Categories (CategoryID)
+);
+
+
+create table Orders(
+         OrderID int PRIMARY KEY,
+         CustomerId int NOT NULL ,
+         OrderDate date NOT NULL ,
+         TotalAmount int NOT NULL ,
+         CONSTRAINT FK_CustomerID FOREIGN KEY (CustomerID) REFERENCES Customers (CustomerID)
+
+);
+
+
+
+create table OrderDetails (
+         OrderDetailID int PRIMARY KEY ,
+         OrderID int NOT NULL ,
+         ProductID int NOT NULL ,
+         Quantity int NOT NULL , 
+         UnitPrice int NOT NULL ,
+         CONSTRAINT FK_Orders FOREIGN KEY (OrderID) REFERENCES Orders (OrderID),
+         CONSTRAINT FK_Products FOREIGN KEY (ProductID) REFERENCES Products (ProductID)
+);
