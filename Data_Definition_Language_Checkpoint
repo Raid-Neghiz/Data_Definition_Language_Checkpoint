@@ -7,7 +7,7 @@ create table Customers (
         Address varchar (20) NOT NULL ,
         City varchar(20) NOT NULL ,
         State varchar(20) NOT NULL ,
-        Zipcode int NOT NULL 
+        Zipcode  varchar(20) NOT NULL
 
 );
 
